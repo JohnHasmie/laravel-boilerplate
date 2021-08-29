@@ -1,3 +1,5 @@
+@inject('division', '\App\Models\Data\Division')
+
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
         <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -17,6 +19,109 @@
                 icon="c-sidebar-nav-icon cil-speedometer"
                 :text="__('Dashboard')" />
         </li>
+
+        <!-- Human Resource --> 
+
+        <li class="c-sidebar-nav-title">@lang('Human Resource')</li>
+
+        @foreach ($division::all() as $division)
+
+            @if (
+                $logged_in_user->hasAllAccess()
+            )
+
+                <li class="c-sidebar-nav-item">
+                    <x-utils.link
+                        class="c-sidebar-nav-link"
+                        :href="route('admin.dashboard')"
+                        :active="activeClass(Route::is('admin.dashboard'), 'c-active')"
+                        icon="c-sidebar-nav-icon cil-contact"
+                        :text="__($division->label . ' Personnel')" />
+                </li>
+            @endif
+
+        @endforeach
+
+        <!-- End Human Resource -->
+
+        <!-- Data Resource -->
+
+        @if (
+            $logged_in_user->hasAllAccess() || $logged_in_user->can('admin.access.data')
+        )
+            <li class="c-sidebar-nav-title">@lang('Data Resource')</li>
+
+            @if (
+                $logged_in_user->hasAllAccess() ||
+                (
+                    $logged_in_user->can('admin.access.corps') ||
+                    $logged_in_user->can('admin.access.corps.list') 
+                )
+            )
+                <li class="c-sidebar-nav-item">
+                    <x-utils.link
+                        :href="route('admin.data.corps.index')"
+                        class="c-sidebar-nav-link"
+                        icon="c-sidebar-nav-icon cil-shield-alt"
+                        :text="__('Corps')"
+                        :active="activeClass(Route::is('admin.data.corps.*'), 'c-active')" />
+                </li>
+            @endif
+
+            @if (
+                $logged_in_user->hasAllAccess() ||
+                (
+                    $logged_in_user->can('admin.access.rank') ||
+                    $logged_in_user->can('admin.access.rank.list')
+                )
+            )
+                <li class="c-sidebar-nav-item">
+                    <x-utils.link
+                        :href="route('admin.data.rank.index')"
+                        class="c-sidebar-nav-link"
+                        icon="c-sidebar-nav-icon cil-chevron-double-down"
+                        :text="__('Rank')"
+                        :active="activeClass(Route::is('admin.data.rank.*'), 'c-active')" />
+                </li>
+            @endif
+
+            @if (
+                $logged_in_user->hasAllAccess() ||
+                (
+                    $logged_in_user->can('admin.access.position') ||
+                    $logged_in_user->can('admin.access.position.list')
+                )
+            )
+                <li class="c-sidebar-nav-item">
+                    <x-utils.link
+                        :href="route('admin.data.position.index')"
+                        class="c-sidebar-nav-link"
+                        icon="c-sidebar-nav-icon cil-tags"
+                        :text="__('Position')"
+                        :active="activeClass(Route::is('admin.data.position.*'), 'c-active')" />
+                </li>
+            @endif
+
+            @if (
+                $logged_in_user->hasAllAccess() ||
+                (
+                    $logged_in_user->can('admin.access.division') ||
+                    $logged_in_user->can('admin.access.division.list')
+                )
+            )
+                <li class="c-sidebar-nav-item">
+                    <x-utils.link
+                        :href="route('admin.data.division.index')"
+                        class="c-sidebar-nav-link"
+                        icon="c-sidebar-nav-icon cil-bookmark"
+                        :text="__('Division')"
+                        :active="activeClass(Route::is('admin.data.division.*'), 'c-active')" />
+                </li>
+            @endif
+            
+        @endif
+
+        <!-- End Data Resource -->
 
         @if (
             $logged_in_user->hasAllAccess() ||
