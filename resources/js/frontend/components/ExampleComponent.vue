@@ -1,5 +1,5 @@
 <template>
-    <span>Laravel Boilerplate</span>
+    <span>Human Resource Management</span>
 </template>
 
 <script>

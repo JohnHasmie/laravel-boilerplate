@@ -33,9 +33,9 @@
                 <li class="c-sidebar-nav-item">
                     <x-utils.link
                         class="c-sidebar-nav-link"
-                        :href="route('admin.dashboard')"
-                        :active="activeClass(Route::is('admin.dashboard'), 'c-active')"
-                        icon="c-sidebar-nav-icon cil-contact"
+                        :href="route('admin.employee.' . $division->name .'.index')"
+                        :active="activeClass(Route::is('admin.employee.' . $division->name .'.index'), 'c-active')"
+                        icon="c-sidebar-nav-icon {{ $division->name == 'military' ? 'cil-contact' : 'cil-user' }}"
                         :text="__($division->label . ' Personnel')" />
                 </li>
             @endif
@@ -109,14 +109,14 @@
                     $logged_in_user->can('admin.access.division.list')
                 )
             )
-                <li class="c-sidebar-nav-item">
+                <!-- <li class="c-sidebar-nav-item">
                     <x-utils.link
                         :href="route('admin.data.division.index')"
                         class="c-sidebar-nav-link"
                         icon="c-sidebar-nav-icon cil-bookmark"
                         :text="__('Division')"
                         :active="activeClass(Route::is('admin.data.division.*'), 'c-active')" />
-                </li>
+                </li> -->
             @endif
             
         @endif
@@ -134,7 +134,7 @@
                 $logged_in_user->can('admin.access.user.change-password')
             )
         )
-            <li class="c-sidebar-nav-title">@lang('System')</li>
+            <!-- <li class="c-sidebar-nav-title">@lang('System')</li>
 
             <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
                 <x-utils.link
@@ -143,7 +143,7 @@
                     class="c-sidebar-nav-dropdown-toggle"
                     :text="__('Access')" />
 
-                <ul class="c-sidebar-nav-dropdown-items">
+                <ul class="c-sidebar-nav-dropdown-items"> -->
                     @if (
                         $logged_in_user->hasAllAccess() ||
                         (
@@ -155,30 +155,30 @@
                             $logged_in_user->can('admin.access.user.change-password')
                         )
                     )
-                        <li class="c-sidebar-nav-item">
+                        <!-- <li class="c-sidebar-nav-item">
                             <x-utils.link
                                 :href="route('admin.auth.user.index')"
                                 class="c-sidebar-nav-link"
                                 :text="__('User Management')"
                                 :active="activeClass(Route::is('admin.auth.user.*'), 'c-active')" />
-                        </li>
+                        </li> -->
                     @endif
 
                     @if ($logged_in_user->hasAllAccess())
-                        <li class="c-sidebar-nav-item">
+                        <!-- <li class="c-sidebar-nav-item">
                             <x-utils.link
                                 :href="route('admin.auth.role.index')"
                                 class="c-sidebar-nav-link"
                                 :text="__('Role Management')"
                                 :active="activeClass(Route::is('admin.auth.role.*'), 'c-active')" />
-                        </li>
+                        </li> -->
                     @endif
-                </ul>
-            </li>
+                <!-- </ul>
+            </li> -->
         @endif
 
         @if ($logged_in_user->hasAllAccess())
-            <li class="c-sidebar-nav-dropdown">
+            <!-- <li class="c-sidebar-nav-dropdown">
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-list"
@@ -199,7 +199,7 @@
                             :text="__('Logs')" />
                     </li>
                 </ul>
-            </li>
+            </li> -->
         @endif
     </ul>
 

@@ -83,7 +83,7 @@
                     <a href="{{ route('frontend.auth.login') }}">@lang('Login')</a>
 
                     @if (config('boilerplate.access.user.registration'))
-                        <a href="{{ route('frontend.auth.register') }}">@lang('Register')</a>
+                        <!-- <a href="{{ route('frontend.auth.register') }}">@lang('Register')</a> -->
                     @endif
                 @endauth
             </div><!--top-right-->
@@ -92,12 +92,13 @@
                 @include('includes.partials.messages')
 
                 <div class="title m-b-md">
-                    <example-component></example-component>
+                    <!-- <example-component></example-component> -->
+                    Human Resource Management
                 </div><!--title-->
 
                 <div class="links">
-                    <a href="http://laravel-boilerplate.com" target="_blank"><i class="fa fa-book"></i> @lang('Docs')</a>
-                    <a href="https://github.com/rappasoft/laravel-boilerplate" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <!-- <a href="http://laravel-boilerplate.com" target="_blank"><i class="fa fa-book"></i> @lang('Docs')</a>
+                    <a href="https://github.com/rappasoft/laravel-boilerplate" target="_blank"><i class="fab fa-github"></i> GitHub</a> -->
                 </div><!--links-->
             </div><!--content-->
         </div><!--app-->

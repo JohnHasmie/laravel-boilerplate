@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePositionsTable extends Migration
+class CreateTypeDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePositionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
+        Schema::create('type_documents', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('label')->nullable();
-            $table->text('description')->nullable();
+            $table->string('label');
+            $table->string('key');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +29,6 @@ class CreatePositionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('positions');
+        Schema::dropIfExists('type_documents');
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Employee;
 
+use App\Domains\Auth\Models\User;
 use App\Models\Data\Corps;
 use App\Models\Data\Division;
 use App\Models\Data\Position;
@@ -20,6 +21,8 @@ class Employee extends Model
     use Uuid;
 
     public $incrementing = false;
+
+    public $uuidName = 'id';
 
     /**
      * @var string[]
@@ -68,6 +71,38 @@ class Employee extends Model
     public function position()
     {
         return $this->belongsTo(Position::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function unit_detail()
+    {
+        return $this->hasOne(EmployeeUnitDetail::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function documents()
+    {
+        return $this->hasMany(EmployeeDocument::class);
+    }
+
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(
+            fn ($query) => $query->where('name', 'like', '%'.$term.'%')
+                ->orWhere('couple_name', 'like', '%'.$term.'%')
+        );
     }
 
 }

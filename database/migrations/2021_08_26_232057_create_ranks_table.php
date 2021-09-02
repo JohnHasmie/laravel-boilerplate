@@ -16,7 +16,7 @@ class CreateRanksTable extends Migration
         Schema::create('ranks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('label');
+            $table->string('label')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
