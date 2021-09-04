@@ -68,9 +68,6 @@ class StoreMilitaryRequest extends StoreEmployeeRequest
             'tek' => ['sometimes'],
             'year_tek' => ['sometimes', 'min:4', 'max:4'],
 
-            'kontra' => ['sometimes'],
-            'year_kontra' => ['sometimes', 'min:4', 'max:4'],
-
             'susfunk' => ['sometimes'],
             'year_susfunk' => ['sometimes', 'min:4', 'max:4'],
 

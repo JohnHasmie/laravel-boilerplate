@@ -2,19 +2,19 @@
 
 namespace App\Http\Livewire\Backend\Employee;
 
+use App\Exports\Employee\CivilPushRankExport;
 use App\Http\Controllers\Backend\Employee\EmployeeController;
 use App\Models\Employee\Employee;
+use Excel;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
- * Class EmployeeTable.
+ * Class CivilReadyPushTable.
  */
-class CivilReadyPushTable extends DataTableComponent
+class CivilReadyPushTable extends CivilTable
 {
-    public string $division = 'civil';
-
     /**
      * @return Builder
      */
@@ -32,23 +32,8 @@ class CivilReadyPushTable extends DataTableComponent
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 
-    public function columns(): array
+    public function exportSelected()
     {
-        return [
-            Column::make(__('Name'))
-                ->sortable(),
-            Column::make(__('Birth Date'))
-                ->sortable(),
-            Column::make(__('Gender'))
-                ->sortable(),
-            Column::make(__('Address')),
-            Column::make(__('Date Finished Rank')),
-            Column::make(__('Actions')),
-        ];
-    }
-
-    public function rowView(): string
-    {
-        return 'backend.employee.includes.row';
+        return Excel::download(new CivilPushRankExport, 'Civil_Push_Rank.xlsx');
     }
 }

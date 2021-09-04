@@ -2,19 +2,16 @@
 
 namespace App\Http\Livewire\Backend\Employee;
 
-use App\Http\Controllers\Backend\Employee\EmployeeController;
+use App\Exports\Employee\MilitaryPushRankExport;
 use App\Models\Employee\Employee;
+use Excel;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
- * Class EmployeeTable.
+ * Class MilitaryReadyPushTable.
  */
-class MilitaryReadyPushTable extends DataTableComponent
+class MilitaryReadyPushTable extends MilitaryTable
 {
-    public string $division = 'military';
-
     /**
      * @return Builder
      */
@@ -32,23 +29,8 @@ class MilitaryReadyPushTable extends DataTableComponent
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 
-    public function columns(): array
+    public function exportSelected()
     {
-        return [
-            Column::make(__('Name'))
-                ->sortable(),
-            Column::make(__('Birth Date'))
-                ->sortable(),
-            Column::make(__('Gender'))
-                ->sortable(),
-            Column::make(__('Address')),
-            Column::make(__('Date Finished Rank')),
-            Column::make(__('Actions')),
-        ];
-    }
-
-    public function rowView(): string
-    {
-        return 'backend.employee.includes.row';
+        return Excel::download(new MilitaryPushRankExport, 'Military_Push_Rank.xlsx');
     }
 }

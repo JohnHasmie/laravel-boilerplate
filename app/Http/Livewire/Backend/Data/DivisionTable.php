@@ -14,6 +14,10 @@ class DivisionTable extends DataTableComponent
 {
     public string $modulName = 'division';
 
+    public array $bulkActions = [
+        'exportSelected' => 'Export to Excel',
+    ];
+
     /**
      * @return Builder
      */

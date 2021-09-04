@@ -3,9 +3,7 @@
 namespace App\Models\Employee;
 
 use App\Domains\Auth\Models\User;
-use App\Models\Data\Corps;
 use App\Models\Data\Division;
-use App\Models\Data\Position;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -49,29 +47,6 @@ class Employee extends Model
         return $this->belongsTo(Division::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function corps()
-    {
-        return $this->belongsTo(Corps::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function rank()
-    {
-        return $this->belongsTo(Rank::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function position()
-    {
-        return $this->belongsTo(Position::class);
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

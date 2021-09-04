@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Backend\Data;
 
+use App\Exports\Data\CorpsExport;
 use App\Models\Data\Corps;
+use Excel;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -13,6 +15,10 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class CorpsTable extends DataTableComponent
 {
     public string $modulName = 'corps';
+
+    public array $bulkActions = [
+        'exportSelected' => 'Export to Excel',
+    ];
 
     /**
      * @return Builder
@@ -38,5 +44,10 @@ class CorpsTable extends DataTableComponent
     public function rowView(): string
     {
         return 'backend.data.includes.row';
+    }
+
+    public function exportSelected()
+    {
+        return Excel::download(new CorpsExport, 'Corps.xlsx');
     }
 }

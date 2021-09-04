@@ -15,6 +15,10 @@ class EmployeeTable extends DataTableComponent
 {
     public string $division = 'military';
 
+    public array $bulkActions = [
+        'exportSelected' => 'Export to Excel',
+    ];
+
     /**
      * @return Builder
      */
