@@ -48,6 +48,6 @@ class RankTable extends DataTableComponent
 
     public function exportSelected()
     {
-        return Excel::download(new RankExport, 'Rank.xlsx');
+        return Excel::download(new RankExport($this->selectedRowsQuery), 'Rank.xlsx');
     }
 }

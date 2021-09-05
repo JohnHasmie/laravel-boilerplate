@@ -1,7 +1,7 @@
 <div class="mb-4">
     <h4 class="text-center mb-4 text-info border-bottom d-inline-block">Personal Details </h4>
-    <div class="form-group row">
-        <label for="photo" class="col-md-3 col-form-label">
+    <div class="form-group col-md-4">
+        <label for="photo">
             @lang('Photo')
         </label>
 
@@ -24,164 +24,166 @@
         </div>
     </div><!--form-group-->
 
-    <div class="form-group row">
-        <label for="name" class="col-md-3 col-form-label">
-            @lang('Name')
-        </label>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="name">
+                @lang('Name')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="text" 
-                name="name" 
-                class="form-control" 
-                placeholder="{{ __('Name') }}" 
-                value="{{ old('name') ?? $employee ? $employee->name : null }}"
-                required 
-            />
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="text" 
+                    name="name" 
+                    class="form-control" 
+                    placeholder="{{ __('Name') }}" 
+                    value="{{ old('name') ?? $employee ? $employee->name : null }}"
+                    required 
+                />
+            <!-- </div> -->
+        </div><!--form-group-->
+
+        <div class="form-group col-md-4">
+            <label for="couple_name">
+                @lang('Couple Name')
+            </label>
+
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="text" 
+                    name="couple_name" 
+                    class="form-control" 
+                    placeholder="{{ __('Couple Name') }}" 
+                    value="{{ old('couple_name') ?? $employee ? $employee->couple_name : null }}"
+                />
+            <!-- </div> -->
         </div>
-    </div><!--form-group-->
 
-    <div class="form-group row">
-        <label for="couple_name" class="col-md-3 col-form-label">
-            @lang('Couple Name')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="number_of_children">
+                @lang('Number of Children')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="text" 
-                name="couple_name" 
-                class="form-control" 
-                placeholder="{{ __('Couple Name') }}" 
-                value="{{ old('couple_name') ?? $employee ? $employee->couple_name : null }}"
-            />
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="number" 
+                    name="number_of_children" 
+                    class="form-control" 
+                    placeholder="{{ __('Number of Children') }}" 
+                    value="{{ old('number_of_children') ?? $employee ? $employee->number_of_children : null }}"
+                />
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="number_of_children" class="col-md-3 col-form-label">
-            @lang('Number of Children')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="birth_place">
+                @lang('Birth Place')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="number" 
-                name="number_of_children" 
-                class="form-control" 
-                placeholder="{{ __('Number of Children') }}" 
-                value="{{ old('number_of_children') ?? $employee ? $employee->number_of_children : null }}"
-            />
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="text" 
+                    name="birth_place" 
+                    class="form-control" 
+                    placeholder="{{ __('Birth Place') }}" 
+                    value="{{ old('birth_place') ?? $employee ? $employee->birth_place : null }}"
+                    required
+                />
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="birth_place" class="col-md-3 col-form-label">
-            @lang('Birth Place')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="birth_date">
+                @lang('Birth Date')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="text" 
-                name="birth_place" 
-                class="form-control" 
-                placeholder="{{ __('Birth Place') }}" 
-                value="{{ old('birth_place') ?? $employee ? $employee->birth_place : null }}"
-                required
-            />
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="date" 
+                    name="birth_date" 
+                    class="form-control" 
+                    placeholder="{{ __('Birth Date') }}" 
+                    value="{{ old('birth_date') ?? $employee ? $employee->birth_date : null }}"
+                    required
+                />
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="birth_date" class="col-md-3 col-form-label">
-            @lang('Birth Date')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="retire_date">
+                @lang('Retire Date')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="date" 
-                name="birth_date" 
-                class="form-control" 
-                placeholder="{{ __('Birth Date') }}" 
-                value="{{ old('birth_date') ?? $employee ? $employee->birth_date : null }}"
-                required
-            />
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="date" 
+                    name="retire_date" 
+                    class="form-control" 
+                    placeholder="{{ __('Retire Date') }}" 
+                    value="{{ old('retire_date') ?? $employee ? $employee->retire_date : null }}"
+                    required
+                />
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="retire_date" class="col-md-3 col-form-label">
-            @lang('Retire Date')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="gender">
+                @lang('Gender')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="date" 
-                name="retire_date" 
-                class="form-control" 
-                placeholder="{{ __('Retire Date') }}" 
-                value="{{ old('retire_date') ?? $employee ? $employee->retire_date : null }}"
-                required
-            />
+            <!-- <div class="col-md-9"> -->
+                <select class="custom-select" name="gender" value="{{ old('gender') ?? $employee ? $employee->gender : null }}" required>
+                    <option value="L" selected>@lang('Male')</option>
+                    <option value="P">@lang('Female')</option>
+                </select>
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="gender" class="col-md-3 col-form-label">
-            @lang('Gender')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="religion">
+                @lang('Religion')
+            </label>
 
-        <div class="col-md-9">
-            <select class="custom-select" name="gender" value="{{ old('gender') ?? $employee ? $employee->gender : null }}" required>
-                <option value="L" selected>@lang('Male')</option>
-                <option value="P">@lang('Female')</option>
-            </select>
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="text" 
+                    name="religion" 
+                    class="form-control" 
+                    placeholder="{{ __('Religion') }}" 
+                    value="{{ old('religion') ?? $employee ? $employee->religion : null }}"
+                    required
+                />
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="religion" class="col-md-3 col-form-label">
-            @lang('Religion')
-        </label>
+        <div class="form-group col-md-4">
+            <label for="phone_number">
+                @lang('Phone Number')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="text" 
-                name="religion" 
-                class="form-control" 
-                placeholder="{{ __('Religion') }}" 
-                value="{{ old('religion') ?? $employee ? $employee->religion : null }}"
-                required
-            />
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="text" 
+                    name="phone_number" 
+                    class="form-control" 
+                    placeholder="{{ __('Phone Number') }}" 
+                    value="{{ old('phone_number') ?? $employee ? $employee->phone_number : null }}"
+                    required
+                />
+            <!-- </div> -->
         </div>
-    </div>
 
-    <div class="form-group row">
-        <label for="phone_number" class="col-md-3 col-form-label">
-            @lang('Phone Number')
-        </label>
+        <div class="form-group col-md-12">
+            <label for="address">
+                @lang('Address')
+            </label>
 
-        <div class="col-md-9">
-            <input 
-                type="text" 
-                name="phone_number" 
-                class="form-control" 
-                placeholder="{{ __('Phone Number') }}" 
-                value="{{ old('phone_number') ?? $employee ? $employee->phone_number : null }}"
-                required
-            />
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label for="address" class="col-md-3 col-form-label">
-            @lang('Address')
-        </label>
-
-        <div class="col-md-9">
-            <textarea 
-                name="address"
-                class="form-control" 
-                placeholder="{{ __('Address') }}" 
-            >{{ old('address') ?? $employee ? $employee->address : null }}</textarea>
+            <!-- <div class="col-md-9"> -->
+                <textarea 
+                    name="address"
+                    class="form-control" 
+                    placeholder="{{ __('Address') }}" 
+                >{{ old('address') ?? $employee ? $employee->address : null }}</textarea>
+            <!-- </div> -->
         </div>
     </div>
     

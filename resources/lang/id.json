@@ -201,9 +201,13 @@
     "Data Resource": "Master Data",
     "Rank": "Pangkat",
     "Position": "Jabatan",
+    "Male" : "Laki",
+    "Female" : "Perempuan",
 
     "Create Military Personnel": "Buat Personal Militer",
     "Create Civil Personnel": "Buat Personal Sipil",
+    "Update Military Personnel": "Ubah Personal Militer",
+    "Update Civil Personnel": "Ubah Personal Sipil",
 
     "Personal Details": "Data Pribadi",
     "Photo": "Foto",
@@ -230,7 +234,7 @@
     "Date Finished Warrant": "Tanggal Selesai Surat Perintah",
     "Number Warrant Check In": "Surat Perintah Masuk",
     "Date Warrant Check In": "Tanggal Selesai Perintah Masuk",
-    "Number Warrant Check Out": "Tamat Perintah Keluar",
+    "Number Warrant Check Out": "Surat Perintah Keluar",
     "Date Warrant Check Out": "Tanggal Selesai Perintah Keluar",
     "Military Education": "Pendidikan Militer",
     "Year Military Education": "Tahun Pendidikan Militer",

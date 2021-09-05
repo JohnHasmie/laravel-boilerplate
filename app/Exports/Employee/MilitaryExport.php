@@ -15,15 +15,17 @@ class MilitaryExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 {
     protected $index = 1;
     protected $typeDocuments = [];
+    protected $query;
 
-    public function __construct()
+    public function __construct($query)
     {
         $this->typeDocuments = TypeDocument::all()->toArray();
+        $this->query = $query; 
     }
 
     public function query()
     {
-        return Employee::with([
+        return $this->query->with([
             'unit_detail.corps', 
             'unit_detail.rank', 
             'unit_detail.position', 

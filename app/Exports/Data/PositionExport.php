@@ -2,16 +2,19 @@
 
 namespace App\Exports\Data;
 
-use App\Models\Data\Position;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
 
-class PositionExport implements FromCollection
+class PositionExport implements FromQuery
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $query;
+
+    public function __construct($query)
     {
-        return Position::all();
+        $this->query = $query; 
+    }
+
+    public function query()
+    {
+        return $this->query;
     }
 }

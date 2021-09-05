@@ -34,6 +34,6 @@ class CivilReadyPushTable extends CivilTable
 
     public function exportSelected()
     {
-        return Excel::download(new CivilPushRankExport, 'Civil_Push_Rank.xlsx');
+        return Excel::download(new CivilPushRankExport($this->selectedRowsQuery), 'Civil_Push_Rank.xlsx');
     }
 }

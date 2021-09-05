@@ -48,6 +48,6 @@ class PositionTable extends DataTableComponent
 
     public function exportSelected()
     {
-        return Excel::download(new PositionExport, 'Position.xlsx');
+        return Excel::download(new PositionExport($this->selectedRowsQuery), 'Position.xlsx');
     }
 }

@@ -2,16 +2,19 @@
 
 namespace App\Exports\Data;
 
-use App\Models\Data\Rank;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
 
-class RankExport implements FromCollection
+class RankExport implements FromQuery
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $query;
+
+    public function __construct($query)
     {
-        return Rank::all();
+        $this->query = $query; 
+    }
+
+    public function query()
+    {
+        return $this->query;
     }
 }

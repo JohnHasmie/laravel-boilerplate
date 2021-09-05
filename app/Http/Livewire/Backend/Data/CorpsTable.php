@@ -48,6 +48,6 @@ class CorpsTable extends DataTableComponent
 
     public function exportSelected()
     {
-        return Excel::download(new CorpsExport, 'Corps.xlsx');
+        return Excel::download(new CorpsExport($this->selectedRowsQuery), 'Corps.xlsx');
     }
 }

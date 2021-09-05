@@ -2,16 +2,19 @@
 
 namespace App\Exports\Data;
 
-use App\Models\Data\Corps;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
 
-class CorpsExport implements FromCollection
+class CorpsExport implements FromQuery
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    protected $query;
+
+    public function __construct($query)
     {
-        return Corps::all();
+        $this->query = $query; 
+    }
+
+    public function query()
+    {
+        return $this->query;
     }
 }

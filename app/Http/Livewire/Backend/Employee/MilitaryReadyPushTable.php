@@ -31,6 +31,6 @@ class MilitaryReadyPushTable extends MilitaryTable
 
     public function exportSelected()
     {
-        return Excel::download(new MilitaryPushRankExport, 'Military_Push_Rank.xlsx');
+        return Excel::download(new MilitaryPushRankExport($this->selectedRowsQuery), 'Military_Push_Rank.xlsx');
     }
 }

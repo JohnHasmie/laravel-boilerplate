@@ -14,7 +14,7 @@ class MilitaryTable extends EmployeeTable
 
     public function exportSelected()
     {
-        return Excel::download(new MilitaryExport, 'Military.xlsx');
+        return Excel::download(new MilitaryExport($this->selectedRowsQuery), 'Military.xlsx');
     }
 
 }

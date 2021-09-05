@@ -14,7 +14,7 @@ class CivilTable extends EmployeeTable
 
     public function exportSelected()
     {
-        return Excel::download(new CivilExport, 'Civil.xlsx');
+        return Excel::download(new CivilExport($this->selectedRowsQuery), 'Civil.xlsx');
     }
 
 }
