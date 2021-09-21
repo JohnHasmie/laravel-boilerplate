@@ -199,8 +199,17 @@
 
     "Human Resource": "Sumber Daya Manusia",
     "Data Resource": "Master Data",
+    "Create Corps": "Buat Corps",
+    "Update Corps": "Ubah Corps",
     "Rank": "Pangkat",
+    "Create Rank": "Buat Pangkat",
+    "Update Rank": "Ubah Pangkat",
     "Position": "Jabatan",
+    "Create Position": "Buat Jabatan",
+    "Update Position": "Ubah Jabatan",
+    "WorkUnit": "Satuan Kerja",
+    "Create WorkUnit": "Buat Satuan Kerja",
+    "Update WorkUnit": "Ubah Satuan Kerja",
     "Male" : "Laki",
     "Female" : "Perempuan",
 
@@ -220,8 +229,11 @@
     "Religion": "Agama",
     "Phone Number": "Nomor Telepon",
     "Address": "Alamat",
-    "Date Finished Army": "Tanggal Selesai TNI",
 
+    "WorkUnit Status": "Status Satuan Kerja",
+    "Non Active": "Tidak Aktif",
+    "Retired": "Pensiun",
+    "Date Finished Army": "Tanggal Selesai TNI",
     "Date Finished Prospective": "Tanggal Selesai CAPEG",
     "Date Finished Servant": "Tanggal Selesai PNS",
 

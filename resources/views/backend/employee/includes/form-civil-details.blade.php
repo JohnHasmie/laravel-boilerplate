@@ -257,71 +257,89 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label for="military_education">
+            <label for="military_education[]">
                 @lang('Military Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
                 <input 
                     type="text" 
-                    name="military_education" 
+                    name="military_education[]" 
                     class="form-control" 
                     placeholder="{{ __('Military Education') }}" 
-                    value="{{ old('military_education') }}"
+                    value="{{ old('military_education.0') }}"
                 />
             <!-- </div> -->
         </div>
 
         <div class="form-group col-md-6">
-            <label for="year_military_education">
+            <label for="year_military_education[]">
                 @lang('Year Military Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
                 <input 
                     type="text" 
-                    name="year_military_education" 
+                    name="year_military_education[]" 
                     class="form-control" 
                     placeholder="{{ __('Year Military Education') }}" 
-                    value="{{ old('year_military_education') }}"
+                    value="{{ old('year_military_education.0') }}"
                     maxlength="4"
                     minlength="4"
                 />
             <!-- </div> -->
         </div>
 
+        <div class="btn-group form-group col-md-12" role="group" aria-label="Large button group">
+            <button class="btn btn-success add-military-education" type="button">
+                @lang('Add Military Education')
+            </button>
+            <button class="btn btn-danger delete-military-education" type="button" style="display: none;">
+                @lang('Delete Last Military Education')
+            </button>
+        </div>
+
         <div class="form-group col-md-6">
-            <label for="general_education">
+            <label for="general_education[]">
                 @lang('General Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
                 <input 
                     type="text" 
-                    name="general_education" 
+                    name="general_education[]" 
                     class="form-control" 
                     placeholder="{{ __('General Education') }}" 
-                    value="{{ old('general_education') }}"
+                    value="{{ old('general_education.0') }}"
                 />
             <!-- </div> -->
         </div>
 
         <div class="form-group col-md-6">
-            <label for="year_general_education">
+            <label for="year_general_education[]">
                 @lang('Year General Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
                 <input 
                     type="text" 
-                    name="year_general_education" 
+                    name="year_general_education[]" 
                     class="form-control" 
                     placeholder="{{ __('Year General Education') }}" 
-                    value="{{ old('year_general_education') }}"
+                    value="{{ old('year_general_education.0') }}"
                     maxlength="4"
                     minlength="4"
                 />
             <!-- </div> -->
+        </div>
+
+        <div class="btn-group form-group col-md-12" role="group" aria-label="Large button group">
+            <button class="btn btn-success add-general-education" type="button">
+                @lang('Add General Education')
+            </button>
+            <button class="btn btn-danger delete-general-education" type="button" style="display: none;">
+                @lang('Delete Last General Education')
+            </button>
         </div>
 
         <div class="form-group col-md-6">

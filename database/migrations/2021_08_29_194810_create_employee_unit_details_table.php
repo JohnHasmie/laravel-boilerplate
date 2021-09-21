@@ -20,6 +20,9 @@ class CreateEmployeeUnitDetailsTable extends Migration
             $table->uuid('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
+            $table->foreignId('work_unit_id')->constrained();
+            $table->string('work_unit_status')->default('active');
+
             $table->foreignId('corps_id')->constrained('corps');
 
             $table->date('date_finished_army')->nullable();
@@ -45,11 +48,11 @@ class CreateEmployeeUnitDetailsTable extends Migration
             $table->string('number_warrant_check_out')->nullable();
             $table->date('date_warrant_check_out')->nullable();
 
-            $table->string('military_education')->nullable();
-            $table->year('year_military_education')->nullable();
+            // $table->string('military_education')->nullable();
+            // $table->year('year_military_education')->nullable();
 
-            $table->string('general_education')->nullable();
-            $table->year('year_general_education')->nullable();
+            // $table->string('general_education')->nullable();
+            // $table->year('year_general_education')->nullable();
 
             $table->string('int_scr')->nullable();
             $table->year('year_int_scr')->nullable();

@@ -4,10 +4,12 @@ use App\Http\Controllers\Backend\Data\Corps\CorpsController;
 use App\Http\Controllers\Backend\Data\Division\DivisionController;
 use App\Http\Controllers\Backend\Data\Position\PositionController;
 use App\Http\Controllers\Backend\Data\Rank\RankController;
+use App\Http\Controllers\Backend\Data\WorkUnit\WorkUnitController;
 use App\Models\Data\Corps;
 use App\Models\Data\Division;
 use App\Models\Data\Position;
 use App\Models\Data\Rank;
+use App\Models\Data\WorkUnit;
 use Tabuna\Breadcrumbs\Trail;
 
 // All route names are prefixed with 'admin.data'.
@@ -145,6 +147,39 @@ Route::group([
                 
             Route::patch('/', [DivisionController::class, 'update'])->name('update');
             Route::delete('/', [DivisionController::class, 'destroy'])->name('destroy');
+        });
+    });
+
+    Route::group([
+        'prefix' => 'workunit',
+        'as' => 'workunit.',
+    ], function () {
+        Route::get('index', [WorkUnitController::class, 'index'])
+            ->name('index')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('admin.dashboard')
+                    ->push(__('WorkUnit'), route('admin.data.workunit.index'));
+            });
+
+        Route::get('create', [WorkUnitController::class, 'create'])
+            ->name('create')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('admin.data.workunit.index')
+                    ->push(__('Create WorkUnit'), route('admin.data.workunit.create'));
+            });
+        
+        Route::post('/', [WorkUnitController::class, 'store'])->name('store');
+
+        Route::group(['prefix' => '{workunit}'], function () {
+            Route::get('edit', [WorkUnitController::class, 'edit'])
+                ->name('edit')
+                ->breadcrumbs(function (Trail $trail, WorkUnit $workunit) {
+                    $trail->parent('admin.data.workunit.index', $workunit)
+                        ->push(__('Edit'), route('admin.data.workunit.edit', $workunit));
+                });
+                
+            Route::patch('/', [WorkUnitController::class, 'update'])->name('update');
+            Route::delete('/', [WorkUnitController::class, 'destroy'])->name('destroy');
         });
     });
 });
