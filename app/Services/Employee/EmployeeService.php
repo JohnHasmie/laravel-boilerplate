@@ -86,6 +86,8 @@ class EmployeeService extends BaseService
 
             $employee->unit_detail()->update([
                 'registration_number' => $data['registration_number'],
+                'work_unit_id' => $data['work_unit_id'],
+                'work_unit_status' => $data['work_unit_status'],
                 'corps_id' => $data['corps_id'],
                 'date_finished_army' => isset($data['date_finished_army']) ? $data['date_finished_army'] : null,
                 'officer_source' => isset($data['officer_source']) ? $data['officer_source'] : null,
@@ -105,10 +107,10 @@ class EmployeeService extends BaseService
                 'date_warrant_check_in' => isset($data['date_warrant_check_in']) ? $data['date_warrant_check_in'] : null,
                 'number_warrant_check_out' => isset($data['number_warrant_check_out']) ? $data['number_warrant_check_out'] : null,
                 'date_warrant_check_out' => isset($data['date_warrant_check_out']) ? $data['date_warrant_check_out'] : null,
-                'military_education' => isset($data['military_education']) ? $data['military_education'] : null,
-                'year_military_education' => isset($data['year_military_education']) ? $data['year_military_education'] : null,
-                'general_education' => isset($data['general_education']) ? $data['general_education'] : null,
-                'year_general_education' => isset($data['year_general_education']) ? $data['year_general_education'] : null,
+                // 'military_education' => isset($data['military_education']) ? $data['military_education'] : null,
+                // 'year_military_education' => isset($data['year_military_education']) ? $data['year_military_education'] : null,
+                // 'general_education' => isset($data['general_education']) ? $data['general_education'] : null,
+                // 'year_general_education' => isset($data['year_general_education']) ? $data['year_general_education'] : null,
 
                 'int_scr' => isset($data['int_scr']) ? $data['int_scr'] : null,
                 'year_int_scr' => isset($data['year_int_scr']) ? $data['year_int_scr'] : null,
@@ -147,9 +149,6 @@ class EmployeeService extends BaseService
             $typeDocuments = $this->getTypeDocuments();
         
             foreach ($typeDocuments as $typeDocument) {
-                // $prefix = 'documents_';
-                // $keyName = $prefix . $typeDocument['key'];
-
                 if (isset($data['documents']) && isset($data['documents'][$typeDocument['key']])) {
                     $file = $data['documents'][$typeDocument['key']];
 
@@ -168,10 +167,16 @@ class EmployeeService extends BaseService
             } elseif (isset($data['email']) && isset($data['password'])) {
                 $this->userService->update($employee->user, $data);
             }
+
+            $employee->military_educations()->delete();
+            $this->createMilitaryEducation($employee, $data);
+
+            $employee->general_educations()->delete();
+            $this->createGeneralEducation($employee, $data);
         } catch (Exception $e) {
             DB::rollBack();
-            // throw new GeneralException($e->getMessage());
-            throw new GeneralException(__('There was a problem updating this employee. Please try again.'));
+            throw new GeneralException($e->getMessage());
+            // throw new GeneralException(__('There was a problem updating this employee. Please contact support.'));
         }
 
         DB::commit();
@@ -249,6 +254,8 @@ class EmployeeService extends BaseService
         
         $this->createUnitDetail($employee, $data);
         $this->createDocuments($employee, $data);
+        $this->createMilitaryEducation($employee, $data);
+        $this->createGeneralEducation($employee, $data);
         
         if (isset($data['email']) && isset($data['password'])) {
             $user = $this->createAccount($data);
@@ -273,6 +280,8 @@ class EmployeeService extends BaseService
     protected function createUnitDetail($employee, $data) {
         $employee->unit_detail()->create([
             'registration_number' => $data['registration_number'],
+            'work_unit_id' => $data['work_unit_id'],
+            'work_unit_status' => $data['work_unit_status'],
             'corps_id' => $data['corps_id'],
             'date_finished_army' => isset($data['date_finished_army']) ? $data['date_finished_army'] : null,
             'officer_source' => isset($data['officer_source']) ? $data['officer_source'] : null,
@@ -292,10 +301,10 @@ class EmployeeService extends BaseService
             'date_warrant_check_in' => isset($data['date_warrant_check_in']) ? $data['date_warrant_check_in'] : null,
             'number_warrant_check_out' => isset($data['number_warrant_check_out']) ? $data['number_warrant_check_out'] : null,
             'date_warrant_check_out' => isset($data['date_warrant_check_out']) ? $data['date_warrant_check_out'] : null,
-            'military_education' => isset($data['military_education']) ? $data['military_education'] : null,
-            'year_military_education' => isset($data['year_military_education']) ? $data['year_military_education'] : null,
-            'general_education' => isset($data['general_education']) ? $data['general_education'] : null,
-            'year_general_education' => isset($data['year_general_education']) ? $data['year_general_education'] : null,
+            // 'military_education' => isset($data['military_education']) ? $data['military_education'] : null,
+            // 'year_military_education' => isset($data['year_military_education']) ? $data['year_military_education'] : null,
+            // 'general_education' => isset($data['general_education']) ? $data['general_education'] : null,
+            // 'year_general_education' => isset($data['year_general_education']) ? $data['year_general_education'] : null,
 
             'int_scr' => isset($data['int_scr']) ? $data['int_scr'] : null,
             'year_int_scr' => isset($data['year_int_scr']) ? $data['year_int_scr'] : null,
@@ -334,24 +343,8 @@ class EmployeeService extends BaseService
 
     protected function createDocuments($employee, array $data) {
         $typeDocuments = $this->getTypeDocuments();
-        
-        // foreach ($typeDocuments as $typeDocument) {
-        //     $prefix = 'document_';
-        //     $keyName = $prefix . $typeDocument['key'];
-
-        //     if (isset($data[$keyName])) {
-        //         $file = $data[$keyName];
-    
-        //         $employee->documents()->create([
-        //             'type_document_id' => $typeDocument['id'],
-        //             'file' => $file->store('documents/' . $typeDocument['key'], 'public'),
-        //         ]);
-        //     }
-        // }
 
         foreach ($typeDocuments as $typeDocument) {
-            // $prefix = 'documents_';
-            // $keyName = $prefix . $typeDocument['key'];
 
             if (isset($data['documents']) && isset($data['documents'][$typeDocument['key']])) {
                 $file = $data['documents'][$typeDocument['key']];
@@ -362,6 +355,24 @@ class EmployeeService extends BaseService
                     'file' => $file->store('documents/' . $typeDocument['key'], 'public'),
                 ]);
             }
+        }
+    }
+
+    protected function createMilitaryEducation($employee, $data) {
+        foreach ($data['military_educations'] as $iEducation => $militaryEducation) {
+            $employee->military_educations()->create([
+                'name' => $militaryEducation,
+                'year' => $data['year_military_educations'][$iEducation]
+            ]);
+        }
+    }
+
+    protected function createGeneralEducation($employee, $data) {
+        foreach ($data['general_educations'] as $iEducation => $generalEducation) {
+            $employee->general_educations()->create([
+                'name' => $generalEducation,
+                'year' => $data['year_general_educations'][$iEducation]
+            ]);
         }
     }
 

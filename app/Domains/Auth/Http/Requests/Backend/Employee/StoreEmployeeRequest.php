@@ -36,7 +36,7 @@ class StoreEmployeeRequest extends FormRequest
             'retire_date' => ['required', 'date'],
             'gender' => ['required', Rule::in('L', 'P')],
             'religion' => ['required', 'max:20'],
-            'phone_number' => ['required', 'min:10', 'max:15'],
+            'phone_number' => ['required', 'min:10', 'max:15', 'unique:employees'],
             'address' => ['required', 'max: 250'],
 
             'division_id' => ['required', 'exists:divisions,id'],

@@ -9,7 +9,7 @@
     />
 
     <div class="form-row">
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-4">
             <label for="registration_number">
                 <!-- @lang('Registration Number') -->
                 @lang('NRP')
@@ -26,7 +26,7 @@
             <!-- </div> -->
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="work_unit_id">
                 @lang('WorkUnit')
             </label>
@@ -44,7 +44,7 @@
             <!-- </div> -->
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="work_unit_status">
                 @lang('WorkUnit Status')
             </label>
@@ -305,36 +305,62 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label for="military_education[]">
+            <label for="military_educations[]">
                 @lang('Military Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
-                <input 
-                    type="text" 
-                    name="military_education[]" 
-                    class="form-control" 
-                    placeholder="{{ __('Military Education') }}" 
-                    value="{{ old('military_education.0') }}"
-                />
+                @if (count(old('military_educations', [])) > 1 )
+                    @foreach( old('military_educations') as $i => $field)
+                        <input 
+                        type="text" 
+                        name="military_educations[]" 
+                        class="form-control mt-2" 
+                        placeholder="{{ __('Military Education') }}" 
+                        value="{{ old('military_educations')[$i] }}"
+                        />
+                    @endforeach
+                @else 
+                    <input 
+                        type="text" 
+                        name="military_educations[]" 
+                        class="form-control" 
+                        placeholder="{{ __('Military Education') }}" 
+                        value="{{ old('military_educations.0') }}"
+                    />
+                @endif
             <!-- </div> -->
         </div>
 
         <div class="form-group col-md-6">
-            <label for="year_military_education[]">
+            <label for="year_military_educations[]">
                 @lang('Year Military Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
-                <input 
-                    type="text" 
-                    name="year_military_education[]" 
-                    class="form-control" 
-                    placeholder="{{ __('Year Military Education') }}" 
-                    value="{{ old('year_military_education.0') }}"
-                    maxlength="4"
-                    minlength="4"
-                />
+                @if (count(old('year_military_educations', [])) > 1 )
+                    @foreach( old('year_military_educations') as $i => $field)
+                        <input 
+                            type="text" 
+                            name="year_military_educations[]" 
+                            class="form-control mt-2" 
+                            placeholder="{{ __('Year Military Education') }}" 
+                            value="{{ old('year_military_educations')[$i] }}"
+                            maxlength="4"
+                            minlength="4"
+                        />
+                    @endforeach
+                @else
+                    <input 
+                        type="text" 
+                        name="year_military_educations[]" 
+                        class="form-control" 
+                        placeholder="{{ __('Year Military Education') }}" 
+                        value="{{ old('year_military_educations.0') }}"
+                        maxlength="4"
+                        minlength="4"
+                    />
+                @endif
             <!-- </div> -->
         </div>
 
@@ -342,42 +368,68 @@
             <button class="btn btn-success add-military-education" type="button">
                 @lang('Add Military Education')
             </button>
-            <button class="btn btn-danger delete-military-education" type="button" style="display: none;">
+            <button class="btn btn-danger delete-military-education" type="button" style="{{ count(old('year_military_educations', [])) > 1 ? '' : 'display: none' }}">
                 @lang('Delete Last Military Education')
             </button>
         </div>
 
         <div class="form-group col-md-6">
-            <label for="general_education[]">
+            <label for="general_educations[]">
                 @lang('General Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
-                <input 
-                    type="text" 
-                    name="general_education[]" 
-                    class="form-control" 
-                    placeholder="{{ __('General Education') }}" 
-                    value="{{ old('general_education.0') }}"
-                />
+                @if (count(old('general_educations', [])) > 1 )
+                    @foreach( old('general_educations') as $i => $field)
+                        <input 
+                            type="text" 
+                            name="general_educations[]" 
+                            class="form-control mt-2" 
+                            placeholder="{{ __('General Education') }}" 
+                            value="{{ old('general_educations')[$i] }}"
+                        />
+                    @endforeach
+                @else
+                    <input 
+                        type="text" 
+                        name="general_educations[]" 
+                        class="form-control" 
+                        placeholder="{{ __('General Education') }}" 
+                        value="{{ old('general_educations.0') }}"
+                    />
+                @endif
             <!-- </div> -->
         </div>
 
         <div class="form-group col-md-6">
-            <label for="year_general_education[]">
+            <label for="year_general_educations[]">
                 @lang('Year General Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
-                <input 
-                    type="text" 
-                    name="year_general_education[]" 
-                    class="form-control" 
-                    placeholder="{{ __('Year General Education') }}" 
-                    value="{{ old('year_general_education.1') }}"
-                    maxlength="4"
-                    minlength="4"
-                />
+                @if (count(old('year_general_educations', [])) > 1 )
+                    @foreach( old('year_general_educations') as $i => $field)
+                        <input 
+                            type="text" 
+                            name="year_general_educations[]" 
+                            class="form-control mt-2" 
+                            placeholder="{{ __('Year General Education') }}" 
+                            value="{{ old('year_general_educations')[$i] }}"
+                            maxlength="4"
+                            minlength="4"
+                        />
+                    @endforeach
+                @else
+                    <input 
+                        type="text" 
+                        name="year_general_educations[]" 
+                        class="form-control" 
+                        placeholder="{{ __('Year General Education') }}" 
+                        value="{{ old('year_general_educations.0') }}"
+                        maxlength="4"
+                        minlength="4"
+                    />
+                @endif
             <!-- </div> -->
         </div>
 
@@ -385,7 +437,7 @@
             <button class="btn btn-success add-general-education" type="button">
                 @lang('Add General Education')
             </button>
-            <button class="btn btn-danger delete-general-education" type="button" style="display: none;">
+            <button class="btn btn-danger delete-general-education" type="button" style="{{ count(old('year_general_educations', [])) > 1 ? '' : 'display: none' }}">
                 @lang('Delete Last General Education')
             </button>
         </div>

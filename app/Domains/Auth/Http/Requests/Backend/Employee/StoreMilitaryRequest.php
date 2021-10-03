@@ -28,6 +28,9 @@ class StoreMilitaryRequest extends StoreEmployeeRequest
 
         $military = [
             'registration_number' => ['required', 'max:200'],
+            'work_unit_id' => ['required', 'exists:work_units,id'],
+            'work_unit_status' => ['required', 'string', 'min:6', 'max:20'],
+            
             'corps_id' => ['required', 'exists:corps,id'],
             'date_finished_army' => ['required', 'date'],
 
@@ -95,10 +98,18 @@ class StoreMilitaryRequest extends StoreEmployeeRequest
             'description' => ['sometimes'],
         ];
 
+        $educations = [
+            'military_educations.*' => ['required', 'min:2'],
+            'year_military_educations.*' => ['required_with:military_educations.*','min:4', 'max:4'],
+
+            'general_educations.*' => ['required', 'min:2'],
+            'year_general_educations.*' => ['required_with:general_educations.*','min:4', 'max:4'],
+        ];
+
         $documents = [
             'documents.*' => ['sometimes', 'image']
         ];
 
-        return array_merge($employee, $military, $documents);
+        return array_merge($employee, $military, $educations, $documents);
     }
 }

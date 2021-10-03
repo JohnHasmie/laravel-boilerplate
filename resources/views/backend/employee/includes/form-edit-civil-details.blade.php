@@ -9,7 +9,7 @@
     />
 
     <div class="form-row">
-        <div class="form-group col-md-9">
+        <div class="form-group col-md-4">
             <label for="registration_number">
                 <!-- @lang('Registration Number') -->
                 @lang('NIP')
@@ -23,6 +23,38 @@
                     placeholder="{{ __('NIP') }}" 
                     value="{{ old('registration_number') ?? $employee ? $employee->unit_detail->registration_number : null }}"
                 />
+            <!-- </div> -->
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="work_unit_id">
+                @lang('WorkUnit')
+            </label>
+
+            <!-- <div class="col-md-9"> -->
+                <select class="custom-select" name="work_unit_id" value="{{ old('work_unit_id') ?? $employee ? $employee->unit_detail->work_unit_id : null }}" required>
+                    @foreach ($workunit::all() as $_workunit)
+                        <option value="{{ $_workunit->id }}" selected>{{ $_workunit->label }}
+                            @if ($_workunit->description)
+                                ({{ $_workunit->description }})
+                            @endif
+                        </option>
+                    @endforeach
+                </select>
+            <!-- </div> -->
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="work_unit_status">
+                @lang('WorkUnit Status')
+            </label>
+
+            <!-- <div class="col-md-9"> -->
+                <select class="custom-select" name="work_unit_status" value="{{ old('work_unit_status') ?? $employee ? $employee->unit_detail->work_unit_status : null }}" required>
+                    <option value="active" selected>@lang('Active')</option>
+                    <option value="non active">@lang('Non Active')</option>
+                    <option value="retired">@lang('Retired')</option>
+                </select>
             <!-- </div> -->
         </div>
 
@@ -257,71 +289,98 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label for="military_education">
+            <label for="military_educations[]">
                 @lang('Military Education')
             </label>
-
+            
             <!-- <div class="col-md-9"> -->
+            @foreach ($employee->military_educations as $iEducation => $militaryEducation )
                 <input 
                     type="text" 
-                    name="military_education" 
-                    class="form-control" 
+                    name="military_educations[]" 
+                    class="form-control mt-2" 
                     placeholder="{{ __('Military Education') }}" 
-                    value="{{ old('military_education') ?? $employee ? $employee->unit_detail->military_education : null }}"
+                    value="{{ old('military_educations')[$iEducation] ?? $employee ? $militaryEducation->name : null }}"
                 />
+            @endforeach
             <!-- </div> -->
         </div>
 
         <div class="form-group col-md-6">
-            <label for="year_military_education">
+            <label for="year_military_educations[]">
                 @lang('Year Military Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
+            @foreach ($employee->military_educations as $iEducation => $militaryEducation )
                 <input 
                     type="text" 
-                    name="year_military_education" 
-                    class="form-control" 
+                    name="year_military_educations[]" 
+                    class="form-control mt-2" 
                     placeholder="{{ __('Year Military Education') }}" 
-                    value="{{ old('year_military_education') ?? $employee ? $employee->unit_detail->year_military_education : null }}"
+                    value="{{ old('year_military_education')[$iEducation] ?? $employee ? $militaryEducation->year : null }}"
                     maxlength="4"
                     minlength="4"
                 />
+            @endforeach
             <!-- </div> -->
         </div>
 
+        <div class="btn-group form-group col-md-12" role="group" aria-label="Large button group">
+            <button class="btn btn-success add-military-education" type="button">
+                @lang('Add Military Education')
+            </button>
+            <button class="btn btn-danger delete-military-education" type="button" style="{{ count(old('year_military_educations', [])) > 1 || ($employee && count($employee->military_educations) > 1) ? '' : 'display: none' }}">
+                @lang('Delete Last Military Education')
+            </button>
+        </div>
+        
+
         <div class="form-group col-md-6">
-            <label for="general_education">
+            <label for="general_educations[]">
                 @lang('General Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
+            @foreach ($employee->general_educations as $iEducation => $generalEducation )
                 <input 
                     type="text" 
-                    name="general_education" 
-                    class="form-control" 
+                    name="general_educations[]" 
+                    class="form-control mt-2" 
                     placeholder="{{ __('General Education') }}" 
-                    value="{{ old('general_education') ?? $employee ? $employee->unit_detail->general_education : null }}"
+                    value="{{ old('general_educations')[$iEducation] ?? $employee ? $generalEducation->name : null }}"
                 />
+            @endforeach
             <!-- </div> -->
         </div>
 
         <div class="form-group col-md-6">
-            <label for="year_general_education">
+            <label for="year_general_educations[]">
                 @lang('Year General Education')
             </label>
 
             <!-- <div class="col-md-9"> -->
+            @foreach ($employee->general_educations as $iEducation => $generalEducation )
                 <input 
                     type="text" 
-                    name="year_general_education" 
-                    class="form-control" 
+                    name="year_general_educations[]" 
+                    class="form-control mt-2" 
                     placeholder="{{ __('Year General Education') }}" 
-                    value="{{ old('year_general_education') ?? $employee ? $employee->unit_detail->year_general_education : null }}"
+                    value="{{ old('year_general_educations')[$iEducation] ?? $employee ? $generalEducation->year : null }}"
                     maxlength="4"
                     minlength="4"
                 />
+            @endforeach
             <!-- </div> -->
+        </div>
+
+        <div class="btn-group form-group col-md-12" role="group" aria-label="Large button group">
+            <button class="btn btn-success add-general-education" type="button">
+                @lang('Add General Education')
+            </button>
+            <button class="btn btn-danger delete-general-education" type="button" style="{{ count(old('year_general_educations', [])) > 1  || ($employee && count($employee->general_educations) > 1) ? '' : 'display: none' }}">
+                @lang('Delete Last General Education')
+            </button>
         </div>
 
         <div class="form-group col-md-6">

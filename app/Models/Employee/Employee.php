@@ -72,6 +72,22 @@ class Employee extends Model
         return $this->hasMany(EmployeeDocument::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function military_educations()
+    {
+        return $this->hasMany(EmployeeMilitaryEducation::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function general_educations()
+    {
+        return $this->hasMany(EmployeeGeneralEducation::class);
+    }
+
     public function scopeSearch($query, $term)
     {
         return $query->where(
