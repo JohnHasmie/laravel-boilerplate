@@ -69,16 +69,23 @@ class CivilExport implements FromQuery, WithHeadings, WithMapping, WithEvents
             $employee->unit_detail->date_warrant_check_in,
             $employee->unit_detail->number_warrant_check_out,
             $employee->unit_detail->date_warrant_check_out,
-            $employee->unit_detail->military_education,
-            $employee->unit_detail->year_military_education,
-            $employee->unit_detail->general_education,
-            $employee->unit_detail->year_general_education,
+            // $employee->unit_detail->military_education,
+            // $employee->unit_detail->year_military_education,
+            // $employee->unit_detail->general_education,
+            // $employee->unit_detail->year_general_education,
             $employee->unit_detail->int_scr,
             $employee->unit_detail->year_int_scr,
             $employee->unit_detail->bp,
             $employee->unit_detail->mi,
             $employee->unit_detail->jas,
             $employee->unit_detail->description
+        ];
+
+        $educations = [
+            implode(PHP_EOL, $employee->military_educations()->pluck('name')->toarray()),
+            implode(PHP_EOL, $employee->military_educations()->pluck('year')->toarray()),
+            implode(PHP_EOL, $employee->general_educations()->pluck('name')->toarray()),
+            implode(PHP_EOL, $employee->general_educations()->pluck('year')->toarray()),
         ];
 
         $documents = array_map(function ($typeDocument) use ($employee) {
@@ -93,7 +100,7 @@ class CivilExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 
         $this->index++;
 
-        return array_merge($personnel, $unit_detail, $documents);
+        return array_merge($personnel, $unit_detail, $educations, $documents);
     }
 
     public function headings(): array
@@ -127,10 +134,10 @@ class CivilExport implements FromQuery, WithHeadings, WithMapping, WithEvents
             __('Date Warrant Check In'),
             __('Number Warrant Check Out'),
             __('Date Warrant Check Out'),
-            __('Military Education'),
-            __('Year Military Education'),
-            __('General Education'),
-            __('Year General Education'),
+            // __('Military Education'),
+            // __('Year Military Education'),
+            // __('General Education'),
+            // __('Year General Education'),
             __('INT SCR'),
             __('Year INT SCR'),
             __('BP'),
@@ -139,9 +146,16 @@ class CivilExport implements FromQuery, WithHeadings, WithMapping, WithEvents
             __('Description'),
         ];
 
+        $educations = [
+            __('Military Education'),
+            __('Year Military Education'),
+            __('General Education'),
+            __('Year General Education'),
+        ];
+
         $documents = array_map(fn($document): string => __($document['label']), $this->typeDocuments);
 
-        return array_merge($personnel, $unit_detail, $documents);
+        return array_merge($personnel, $unit_detail, $educations, $documents);
     }
 
     /**

@@ -49,6 +49,14 @@ class UsersTable extends DataTableComponent
     {
         $query = User::with('roles', 'twoFactorAuth')->withCount('twoFactorAuth');
 
+        if (!auth()->user()->hasRole('Administrator')) {
+            $currentWorkUnit = auth()->user()->workUnitId();
+            
+            $query->whereHas('employee.unit_detail', function ($q) use ($currentWorkUnit) {
+                $q->whereWorkUnitId($currentWorkUnit);
+            });
+        }
+
         if ($this->status === 'deleted') {
             $query = $query->onlyTrashed();
         } elseif ($this->status === 'deactivated') {

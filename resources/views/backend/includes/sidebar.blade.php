@@ -23,12 +23,15 @@
         <!-- Human Resource --> 
 
         <li class="c-sidebar-nav-title">@lang('Human Resource')</li>
+        @php
+            $divisionAccess = []; 
+            if ($logged_in_user->can('admin.access.persmil')) array_push($divisionAccess, 'military');
+            if ($logged_in_user->can('admin.access.persip')) array_push($divisionAccess, 'civil');
+        @endphp
 
         @foreach ($division::all() as $division)
 
-            @if (
-                $logged_in_user->hasAllAccess()
-            )
+            @if ($logged_in_user->hasAllAccess() || in_array($division->name, $divisionAccess))
 
                 <li class="c-sidebar-nav-item">
                     <x-utils.link

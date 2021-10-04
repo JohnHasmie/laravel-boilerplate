@@ -25,11 +25,24 @@ class EmployeeTable extends DataTableComponent
     public function query(): Builder
     {
         $division = $this->division;
+        $currentUser = auth()->user();
 
-        return Employee::whereHas('division', function ($q) use ($division) {
+        if ($currentUser->hasRole('Administrator')) {
+            return Employee::whereHas('division', function ($q) use ($division) {
+                    $q->whereName($division);
+                })
+                ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+        } else {
+            $currentWorkUnit = $currentUser->workUnitId();
+            
+            return Employee::whereHas('division', function ($q) use ($division) {
                 $q->whereName($division);
             })
+            ->whereHas('unit_detail', function ($q) use ($currentWorkUnit) {
+                $q->whereWorkUnitId($currentWorkUnit);
+            })
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+        }
     }
 
     public function columns(): array
