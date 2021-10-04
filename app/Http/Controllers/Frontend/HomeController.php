@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Auth;
+
 /**
  * Class HomeController.
  */
@@ -13,6 +15,10 @@ class HomeController
     public function index()
     {
         // return view('frontend.index');
-        return redirect('/login');
+        if (Auth::check()) {
+            return redirect('/admin/dashboard');
+        } else {
+            return redirect('/login');
+        }
     }
 }

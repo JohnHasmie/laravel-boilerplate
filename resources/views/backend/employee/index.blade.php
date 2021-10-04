@@ -4,9 +4,11 @@
 
 @section('title', __($modulName))
 
-@section('breadcrumb-links')
-    @include('backend.employee.includes.breadcrumb-links')
-@endsection
+@if ($division !== 'all')
+    @section('breadcrumb-links')
+        @include('backend.employee.includes.breadcrumb-links')
+    @endsection
+@endif
 
 @section('content')
     <x-backend.card>
@@ -14,7 +16,7 @@
             @lang($modulName)
         </x-slot>
 
-        @if ($logged_in_user->hasAllAccess())
+        @if ($logged_in_user->hasAllAccess() && $division !== 'all')
             <x-slot name="headerActions">
                 <x-utils.link
                     icon="c-icon cil-plus"
@@ -26,7 +28,9 @@
         @endif
 
         <x-slot name="body">
-            @if ($division === 'military')
+            @if ($division === 'all')
+                <livewire:backend.employee.employee-table />
+            @elseif ($division === 'military')
                 <livewire:backend.employee.military-table />
             @else
                 <livewire:backend.employee.civil-table />

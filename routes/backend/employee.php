@@ -11,6 +11,18 @@ Route::group([
         'as' => 'employee.',
     ], function () {
         Route::group([
+            'prefix' => 'all',
+            'as' => 'all.',
+        ], function () {
+            Route::get('index', [EmployeeController::class, 'index'])
+                ->name('index')
+                ->breadcrumbs(function (Trail $trail) {
+                    $trail->parent('admin.dashboard')
+                        ->push(__('Personnel'), route('admin.employee.all.index'));
+                });
+        });
+
+        Route::group([
             'prefix' => 'military',
             'as' => 'military.',
         ], function () {

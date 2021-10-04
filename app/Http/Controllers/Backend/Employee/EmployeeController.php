@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Employee;
 
 use App\Models\Employee\Employee;
 use App\Services\Employee\EmployeeService;
+use Illuminate\Http\Request;
 
 /**
  * Class EmployeeController.
@@ -15,7 +16,7 @@ class EmployeeController
      */
     protected $employeeService;
 
-    protected $division = 'military';
+    protected $division = 'all';
 
     /**
      * RankController constructor.
@@ -29,10 +30,23 @@ class EmployeeController
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = [
+            'rank_id' => null,
+            'corps_id' => null,
+            'position_id'=> null,
+            'work_unit_id'=> null,
+            'work_unit_status' => null,
+            'military_education' => null,
+            'general_education' => null,
+            'date_warrant_check_in' => null,
+            'date_warrant_check_out' => null,
+        ];
+
         return view('backend.employee.index')
-            ->withDivision($this->division);
+            ->withDivision($this->division)
+            ->withSearch($search);
     }
 
     /**

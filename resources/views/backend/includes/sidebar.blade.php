@@ -22,7 +22,23 @@
 
         <!-- Human Resource --> 
 
-        <li class="c-sidebar-nav-title">@lang('Human Resource')</li>
+        @if (
+            $logged_in_user->hasAllAccess() || 
+            $logged_in_user->can('admin.access.persmil') || 
+            $logged_in_user->can('admin.access.persip')
+        )
+            <li class="c-sidebar-nav-title">@lang('Human Resource')</li>
+            
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    class="c-sidebar-nav-link"
+                    :href="route('admin.employee.all.index')"
+                    :active="activeClass(Route::is('admin.employee.all'), 'c-active')"
+                    icon="c-sidebar-nav-icon cil-user"
+                    :text="__('Personnel')" />
+            </li>
+        @endif
+
         @php
             $divisionAccess = []; 
             if ($logged_in_user->can('admin.access.persmil')) array_push($divisionAccess, 'military');
