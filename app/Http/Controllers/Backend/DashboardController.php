@@ -16,21 +16,33 @@ class DashboardController
     {
         $date = today()->format('Y-m-d');
 
-        $militaryReadyToPush = Employee::whereHas('division', function ($q) {
+        $queryMilitaryReadyToPush = Employee::whereHas('division', function ($q) {
                 $q->whereName('military');
             })
             ->whereHas('unit_detail', function ($q) use ($date) {
                 $q->where('date_finished_rank', '>=', $date);
-            })
-            ->get();
+            });
 
-        $civilReadyToPush = Employee::whereHas('division', function ($q) {
+        $queryCivilReadyToPush = Employee::whereHas('division', function ($q) {
                 $q->whereName('civil');
             })
             ->whereHas('unit_detail', function ($q) use ($date) {
                 $q->where('date_finished_rank', '>=', $date);
-            })
-            ->get();
+            });
+
+        if (auth()->user()->hasRole('Admin Work Unit')) {
+            $currentWorkUnit = auth()->user()->workUnitId();
+
+            $queryMilitaryReadyToPush->whereHas('unit_detail', function ($q) use ($currentWorkUnit) {
+                $q->whereWorkUnitId($currentWorkUnit);
+            });
+            $queryCivilReadyToPush->whereHas('unit_detail', function ($q) use ($currentWorkUnit) {
+                $q->whereWorkUnitId($currentWorkUnit);
+            });
+        }
+        
+        $militaryReadyToPush = $queryMilitaryReadyToPush->get();
+        $civilReadyToPush = $queryCivilReadyToPush->get();
 
         return view('backend.dashboard', [
             'military_ready_push' => $militaryReadyToPush,

@@ -55,6 +55,8 @@ class CivilExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 
         $unit_detail = [
             $employee->unit_detail->register_number,
+            $employee->unit_detail->work_unit->label,
+            $employee->unit_detail->work_unit_status,
             $employee->unit_detail->corps->label,
             $employee->unit_detail->date_finished_prospective,
             $employee->unit_detail->date_finished_servant,
@@ -120,6 +122,8 @@ class CivilExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 
         $unit_detail = [
             __('NRP'),
+            __('WorkUnit'),
+            'Status ' . __('WorkUnit'),
             __('Corps'),
             __('Date Finished Prospective'),
             __('Date Finished Servant'),

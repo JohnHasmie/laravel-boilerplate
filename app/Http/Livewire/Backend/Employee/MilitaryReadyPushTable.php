@@ -19,14 +19,25 @@ class MilitaryReadyPushTable extends MilitaryTable
     {
         $division = $this->division;
         $date = today()->format('Y-m-d');
+        $currentUser = auth()->user();
 
-        return Employee::whereHas('division', function ($q) use ($division) {
+        $query = Employee::whereHas('division', function ($q) use ($division) {
                 $q->whereName($division);
             })
             ->whereHas('unit_detail', function ($q) use ($date) {
                 $q->where('date_finished_rank', '>=', $date);
             })
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
+
+        if ($currentUser->hasRole('Admin Work Unit')) {
+            $currentWorkUnit = $currentUser->workUnitId();
+
+            $query->whereHas('unit_detail', function ($q) use ($currentWorkUnit) {
+                $q->whereWorkUnitId($currentWorkUnit);
+            });
+        } 
+
+        return $query;
     }
 
     public function exportSelected()

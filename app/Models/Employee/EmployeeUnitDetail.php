@@ -5,6 +5,7 @@ namespace App\Models\Employee;
 use App\Models\Data\Corps;
 use App\Models\Data\Position;
 use App\Models\Data\Rank;
+use App\Models\Data\WorkUnit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -46,6 +47,14 @@ class EmployeeUnitDetail extends Model
     public function position()
     {
         return $this->belongsTo(Position::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function work_unit()
+    {
+        return $this->belongsTo(WorkUnit::class);
     }
 
     

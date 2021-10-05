@@ -55,6 +55,9 @@ class MilitaryExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 
         $unit_detail = [
             $employee->unit_detail->register_number,
+            $employee->unit_detail->work_unit->label,
+            $employee->unit_detail->work_unit_status,
+            $employee->unit_detail->register_number,
             $employee->unit_detail->corps->label,
             $employee->unit_detail->date_finished_army,
             $employee->unit_detail->officer_source,
@@ -141,6 +144,8 @@ class MilitaryExport implements FromQuery, WithHeadings, WithMapping, WithEvents
 
         $unit_detail = [
             __('NRP'),
+            __('WorkUnit'),
+            'Status ' . __('WorkUnit'),
             __('Corps'),
             __('Date Finished Army'),
             __('Officer Source'),

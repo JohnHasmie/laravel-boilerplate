@@ -277,5 +277,19 @@
     "Indonesian Armed Forces Social Insurance Card": "Kartu ASABRI",
     "Satya Badge Award": "Penghargaan/Satya Lencana",
     "Other": "Lain lain",
-    "No personnel are ready to move up the ranks": "Saat ini belum ada personil yang siap untuk kenaikan pangkat"
+    "No personnel are ready to move up the ranks": "Saat ini belum ada personil yang siap untuk kenaikan pangkat",
+
+    "Add Military Education": "Tambah Pendidikan Militer",
+    "Add General Education": "Tambah Pendidikan Umum",
+    "Delete Last Military Education": "Hapus Pendidikan Militer Terakhir",
+    "Delete Last General Education": "Hapus Pendidikan Umum Terakhir",
+
+    "Retirement Year": "Tahun Pensiun",
+    "Entry Year": "Tahun Masuk",
+    "Start Periode": "Awal Periode",
+    "End Periode": "Akhir Periode",
+
+    "active": "aktif",
+    "non active": "tidak aktif",
+    "retired": "pensiun"
 }
