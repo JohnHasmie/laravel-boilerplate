@@ -30,23 +30,10 @@ class EmployeeController
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $search = [
-            'rank_id' => null,
-            'corps_id' => null,
-            'position_id'=> null,
-            'work_unit_id'=> null,
-            'work_unit_status' => null,
-            'military_education' => null,
-            'general_education' => null,
-            'date_warrant_check_in' => null,
-            'date_warrant_check_out' => null,
-        ];
-
         return view('backend.employee.index')
-            ->withDivision($this->division)
-            ->withSearch($search);
+            ->withDivision($this->division);
     }
 
     /**

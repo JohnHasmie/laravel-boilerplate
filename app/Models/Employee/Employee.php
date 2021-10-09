@@ -4,6 +4,7 @@ namespace App\Models\Employee;
 
 use App\Domains\Auth\Models\User;
 use App\Models\Data\Division;
+use App\Models\Data\Rank;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

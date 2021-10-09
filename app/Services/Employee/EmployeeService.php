@@ -69,7 +69,7 @@ class EmployeeService extends BaseService
         DB::beginTransaction();
 
         $data = array_filter($data);
-
+        
         try {
             $employee->update([
                 'name' => $data['name'],
@@ -82,7 +82,7 @@ class EmployeeService extends BaseService
                 'gender' => $data['gender'],
                 'religion' => $data['religion'],
                 'address' => $data['address'],
-            ]);
+                ]);
 
             $employee->unit_detail()->update([
                 'registration_number' => $data['registration_number'],
@@ -173,6 +173,7 @@ class EmployeeService extends BaseService
 
             $employee->general_educations()->delete();
             $this->createGeneralEducation($employee, $data);
+            // dd($employee->toArray());
         } catch (Exception $e) {
             DB::rollBack();
             throw new GeneralException($e->getMessage());

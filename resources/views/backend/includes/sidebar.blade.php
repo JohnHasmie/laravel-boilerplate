@@ -34,7 +34,7 @@
                     class="c-sidebar-nav-link"
                     :href="route('admin.employee.all.index')"
                     :active="activeClass(Route::is('admin.employee.all'), 'c-active')"
-                    icon="c-sidebar-nav-icon cil-user"
+                    icon="c-sidebar-nav-icon cil-people"
                     :text="__('Personnel')" />
             </li>
         @endif
@@ -141,6 +141,23 @@
         @endif
 
         <!-- End Data Resource -->
+
+        @if (
+            $logged_in_user->hasAllAccess()
+        )
+
+            <li class="c-sidebar-nav-title">@lang('Report')</li>
+
+            <li class="c-sidebar-nav-item">
+                <x-utils.link
+                    :href="route('admin.report.employee.index')"
+                    class="c-sidebar-nav-link"
+                    icon="c-sidebar-nav-icon cil-folder-open"
+                    :text="__('Employee')"
+                    :active="activeClass(Route::is('admin.report.employee.*'), 'c-active')" />
+            </li>
+        @endif
+
 
         @if (
             $logged_in_user->hasAllAccess() ||

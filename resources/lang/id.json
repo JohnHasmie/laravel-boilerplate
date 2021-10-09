@@ -208,6 +208,7 @@
     "Create Position": "Buat Jabatan",
     "Update Position": "Ubah Jabatan",
     "WorkUnit": "Satuan Kerja",
+    "Workunit": "Satuan Kerja",
     "Create WorkUnit": "Buat Satuan Kerja",
     "Update WorkUnit": "Ubah Satuan Kerja",
     "Male" : "Laki",
@@ -291,5 +292,9 @@
 
     "active": "aktif",
     "non active": "tidak aktif",
-    "retired": "pensiun"
+    "retired": "pensiun",
+
+    "Employee": "Petugas",
+    "Report": "Laporan",
+    "Employee Report": "Laporan Petugas"
 }
