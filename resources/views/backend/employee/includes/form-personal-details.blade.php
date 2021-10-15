@@ -77,7 +77,7 @@
     </div>
     
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="birth_place">
                 @lang('Birth Place')
             </label>
@@ -94,7 +94,7 @@
             <!-- </div> -->
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="birth_date">
                 @lang('Birth Date')
             </label>
@@ -111,7 +111,24 @@
             <!-- </div> -->
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
+            <label for="entry_date">
+                @lang('Entry Date')
+            </label>
+
+            <!-- <div class="col-md-9"> -->
+                <input 
+                    type="date" 
+                    name="entry_date" 
+                    class="form-control" 
+                    placeholder="{{ __('Entry Date') }}" 
+                    value="{{ old('entry_date') }}"
+                    required
+                />
+            <!-- </div> -->
+        </div>
+
+        <div class="form-group col-md-3">
             <label for="retire_date">
                 @lang('Retire Date')
             </label>

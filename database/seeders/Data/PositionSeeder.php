@@ -30,6 +30,11 @@ class PositionSeeder extends Seeder
             'label' => 'Position 2',
         ]);
 
+        Position::create([
+            'name' => 'position 3',
+            'label' => 'Position 3',
+        ]);
+
         $this->enableForeignKeys();
     }
 }

@@ -15,7 +15,7 @@ Route::group([
             ->name('index')
             ->breadcrumbs(function (Trail $trail) {
                 $trail->parent('admin.dashboard')
-                    ->push(__('Employee Report'), route('admin.report.employee.index'));
+                    ->push(__('Graph Report'), route('admin.report.employee.index'));
             });
     });
 });

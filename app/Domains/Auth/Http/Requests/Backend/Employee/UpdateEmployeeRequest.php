@@ -33,6 +33,7 @@ class UpdateEmployeeRequest extends FormRequest
             'photo' => ['sometimes'],
             'birth_place' => ['required'],
             'birth_date' => ['required', 'date'],
+            'entry_date' => ['required', 'date'],
             'retire_date' => ['required', 'date'],
             'gender' => ['required', Rule::in('L', 'P')],
             'religion' => ['required', 'max:20'],

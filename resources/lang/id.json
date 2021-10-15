@@ -225,6 +225,7 @@
     "Number of Children": "Jumlah Anak",
     "Birth Place": "Tempat Lahir",
     "Birth Date": "Tanggal Lahir",
+    "Entry Date": "Tanggal Masuk",
     "Retire Date": "Tanggal Pensiun",
     "Gender": "Jenis Kelamin",
     "Religion": "Agama",
@@ -296,5 +297,6 @@
 
     "Employee": "Petugas",
     "Report": "Laporan",
-    "Employee Report": "Laporan Petugas"
+    "Employee Report": "Laporan Petugas",
+    "Graph Report": "Report Grafik"
 }

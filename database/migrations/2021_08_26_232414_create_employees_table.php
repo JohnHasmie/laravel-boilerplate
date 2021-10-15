@@ -24,6 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('number_of_children')->default(0);
             $table->string('birth_place');
             $table->date('birth_date');
+            $table->date('entry_date');
             $table->date('retire_date');
             $table->enum('gender', ['L', 'P']);
             $table->string('religion');

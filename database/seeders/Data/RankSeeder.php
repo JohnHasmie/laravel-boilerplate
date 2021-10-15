@@ -30,6 +30,11 @@ class RankSeeder extends Seeder
             'label' => 'Rank 2',
         ]);
 
+        Rank::create([
+            'name' => 'rank 3',
+            'label' => 'Rank 3',
+        ]);
+
         $this->enableForeignKeys();
     }
 }

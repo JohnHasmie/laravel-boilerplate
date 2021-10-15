@@ -30,6 +30,11 @@ class CorpsSeeder extends Seeder
             'label' => 'Corps 2',
         ]);
 
+        Corps::create([
+            'name' => 'corps 3',
+            'label' => 'Corps 3',
+        ]);
+
         $this->enableForeignKeys();
     }
 }

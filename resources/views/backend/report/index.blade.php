@@ -1,11 +1,11 @@
 @extends('backend.layouts.app')
 
-@section('title', __('Employee Report'))
+@section('title', __('Graph Report'))
 
 @section('content')
     <x-backend.card>
         <x-slot name="header">
-            @lang('Employee Report')
+            @lang('Graph Report')
         </x-slot>
 
         <x-slot name="body">

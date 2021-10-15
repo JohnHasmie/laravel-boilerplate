@@ -122,7 +122,7 @@ class EmployeeTable extends DataTableComponent
                 ->when($filters['workunit'] ?? false, fn ($query, $workunit) => $query->whereHas('unit_detail.work_unit', function ($q) use ($workunit) { $q->whereName($workunit); } ))
                 ->when($filters['position'] ?? false, fn ($query, $position) => $query->whereHas('unit_detail.position', function ($q) use ($position) { $q->whereName($position); } ))
                 ->when($filters['retirement_year'] ?? false, fn ($query, $year) => $query->where('retire_date', 'like', "%$year%"))
-                ->when($filters['entry_year'] ?? false, fn ($query, $year) => $query->whereHas('unit_detail', function ($q) use ($year) { $q->where('date_warrant_check_in', 'like', "%$year%"); } ))
+                ->when($filters['entry_year'] ?? false, fn ($query, $year) => $query->where('entry_year', 'like', "%$year%"))
                 ->when($filters['general_education'] ?? false, fn ($query, $education) => $query->whereHas('general_educations', function ($q) use ($education) { $q->where('name', 'like', "%$education%"); } ))
                 ->when($filters['military_education'] ?? false, fn ($query, $education) => $query->whereHas('military_educations', function ($q) use ($education) { $q->where('name', 'like', "%$education%"); } ))
                 ->when($filters['status'] ?? false, fn ($query, $status) => $query->whereHas('unit_detail', function ($q) use ($status) { $q->whereWorkUnitStatus($status); } ))

@@ -153,7 +153,7 @@
                     :href="route('admin.report.employee.index')"
                     class="c-sidebar-nav-link"
                     icon="c-sidebar-nav-icon cil-folder-open"
-                    :text="__('Employee')"
+                    :text="__('Graph Report')"
                     :active="activeClass(Route::is('admin.report.employee.*'), 'c-active')" />
             </li>
         @endif

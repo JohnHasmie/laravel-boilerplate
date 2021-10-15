@@ -11,6 +11,8 @@
                         <option value="workunit">@lang('WorkUnit')</option>
                         <option value="position">@lang('Position')</option>
                         <option value="status">@lang('Status')</option>
+                        <option value="entry year">@lang('Entry Year')</option>
+                        <option value="retirement year">@lang('Retirement Year')</option>
                     </select>
                 </div>
             </div>

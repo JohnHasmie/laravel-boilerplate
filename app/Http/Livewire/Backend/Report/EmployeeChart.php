@@ -6,6 +6,7 @@ use App\Models\Data\Corps;
 use App\Models\Data\Position;
 use App\Models\Data\Rank;
 use App\Models\Data\WorkUnit;
+use App\Models\Employee\Employee;
 use App\Models\Employee\EmployeeUnitDetail;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
 use Carbon\Carbon;
@@ -169,6 +170,56 @@ class EmployeeChart extends Component
             ->toArray();
 
         $type = ['active' => 1, 'non active' => 1, 'retired' => 1];
+        dump($data);
+        dd($type);
+
+        return [
+            'data' => $data,
+            'type' => $type
+        ];
+    }
+
+    public function getDataRetirementYear() {
+        $startDate = date($this->start_periode);
+        $endDate = date($this->end_periode);
+
+        $data = Employee::whereBetween('created_at', [$startDate, $endDate])
+            ->get()
+            ->groupBy([
+                function($item) {
+                    return Carbon::parse($item->created_at)->format('F-Y');
+                },
+                function($item) {
+                    return Carbon::parse($item->retire_date)->format('Y') . ' ';
+                },
+            ])
+            ->toArray();
+
+        $type = array_fill_keys(array_keys(array_flip(array_unique(array_reduce(array_map('array_keys',$data),'array_merge',[])))), 1);
+
+        return [
+            'data' => $data,
+            'type' => $type
+        ];
+    }
+
+    public function getDataEntryYear() {
+        $startDate = date($this->start_periode);
+        $endDate = date($this->end_periode);
+
+        $data = Employee::whereBetween('created_at', [$startDate, $endDate])
+            ->get()
+            ->groupBy([
+                function($item) {
+                    return Carbon::parse($item->created_at)->format('F-Y');
+                },
+                function($item) {
+                    return Carbon::parse($item->entry_date)->format('Y') . ' ';
+                },
+            ])
+            ->toArray();
+
+        $type = array_fill_keys(array_keys(array_flip(array_unique(array_reduce(array_map('array_keys',$data),'array_merge',[])))), 1);
 
         return [
             'data' => $data,
@@ -183,6 +234,8 @@ class EmployeeChart extends Component
             'workunit' => 'getDataWorkUnit',
             'position' => 'getDataPosition',
             'status' => 'getDataStatusWorkUnit',
+            'entry year' => 'getDataEntryYear',
+            'retirement year' => 'getDataRetirementYear',
         ];
     }
 
