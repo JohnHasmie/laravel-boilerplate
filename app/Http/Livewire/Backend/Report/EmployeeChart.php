@@ -170,8 +170,6 @@ class EmployeeChart extends Component
             ->toArray();
 
         $type = ['active' => 1, 'non active' => 1, 'retired' => 1];
-        dump($data);
-        dd($type);
 
         return [
             'data' => $data,
