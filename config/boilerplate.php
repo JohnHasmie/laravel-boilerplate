@@ -161,6 +161,7 @@ return [
             // 'he' => ['name' => 'Hebrew', 'rtl' => true],
             'id' => ['name' => 'Indonesian', 'rtl' => false],
             'en' => ['name' => 'English', 'rtl' => false],
+            'st' => ['name' => 'Standar', 'rtl' => false],
             // 'it' => ['name' => 'Italian', 'rtl' => false],
             // 'ja' => ['name' => 'Japanese', 'rtl' => false],
             // 'ko' => ['name' => 'Korean', 'rtl' => false],
